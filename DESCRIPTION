@@ -8,12 +8,28 @@ Authors@R:
            role = c("aut","cre"),
            email = "yunhe.liu@tamu.edu")
 Maintainer: Yunhe Liu <yunhe.liu@tamu.edu>
-Description: Provides adaptive threshold adjustment and sample size recalibration for managing under- and over-enrollment in Simon's Two-Stage Design, with tools for post-inference analysis in clinical trials. 
+Description: Implements methods for managing enrollment challenges in Simon's 
+    Two-Stage Design for phase II clinical trials. Provides functions for:
+    (1) adaptive threshold adjustment to handle under-enrollment,
+    (2) sample size recalibration for over-enrollment scenarios, and
+    (3) comprehensive post-inference analysis tools including power calculation,
+    confidence intervals, and hypothesis testing. These methods help maintain 
+    statistical rigor while adapting to real-world enrollment variations in
+    clinical trials.
 License: GPL (>= 3)
 Encoding: UTF-8
+LazyData: true
+URL: https://github.com/YunheLiuMCMC/ClinSimon
+BugReports: https://github.com/YunheLiuMCMC/ClinSimon/issues
 RoxygenNote: 7.3.2
 Imports: stats
 Depends: R (>= 3.5.0)
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
 NeedsCompilation: no
 Author: Yunhe Liu [aut, cre]
 
