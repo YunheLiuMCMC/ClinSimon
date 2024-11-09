@@ -1,7 +1,5 @@
 ---
-output: 
-  html_document: 
-    keep_md: true
+output: pdf_document
 ---
 
 # Final Project - R package
