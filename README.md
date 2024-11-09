@@ -20,6 +20,10 @@ My repository is public, so you can use following R code to download:
 ```r
 devtools::install_github("YunheLiuMCMC/ClinSimon")
 ```
+After making this package Vignette, you can use following R code to download:
+```r
+devtools::install_github("YunheLiuMCMC/ClinSimon"", build_vignettes = TRUE)
+```
 
 ## What is Left
 
