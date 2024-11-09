@@ -3,10 +3,10 @@ Type: Package
 Title: Clinical Trial Design Methods for Managing Under- and Over-Enrollment in Simon's Two-Stage Design and Post-Inference Analysis Tools
 Version: 0.1.0
 Authors@R: 
-    c(person(given = "Yunhe",
-             family = "Liu",
-             role = c("aut","cre"),
-             email = "yunhe.liu@tamu.edu")
+    person(given = "Yunhe",
+           family = "Liu",
+           role = c("aut","cre"),
+           email = "yunhe.liu@tamu.edu")
 Maintainer: Yunhe Liu <yunhe.liu@tamu.edu>
 Description: Provides adaptive threshold adjustment and sample size recalibration for managing under- and over-enrollment in Simon's Two-Stage Design, with tools for post-inference analysis in clinical trials. 
 License: GPL (>= 3)
