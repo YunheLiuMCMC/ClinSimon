@@ -27,8 +27,7 @@
 ##' sample size under null hypothesis EN(p0) and Probability of early termination
 ##' under null hypothesis PET(p0).
 ##'
-##' @references Yunhe Liu, & Haitao Pan. (2024). \emph{Clinical Trial Design Methods
-##' for Managing Under- and Over-Enrollment in Simon's Two-Stage Design, Submitted.}
+##' @import stats
 ##'
 ##' @examples
 ##' # Adaptive Threshold Simon Design Case 1
