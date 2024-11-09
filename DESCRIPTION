@@ -31,5 +31,4 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Author: Yunhe Liu [aut, cre]
 
