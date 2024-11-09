@@ -17,7 +17,9 @@ realized sample size is smaller than the original one).
 ## Installation Instruction
 
 My repository is public, so you can use following R code to download:   
+```r
 devtools::install_github("YunheLiuMCMC/ClinSimon")
+```
 
 ## What is Left
 
