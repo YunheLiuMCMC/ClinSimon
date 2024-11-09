@@ -30,6 +30,7 @@ devtools::install_github("YunheLiuMCMC/ClinSimon"", build_vignettes = TRUE)
 - Write the function ATSS_Design( ) to provide an Adaptive Threshold and Sample Size Simon Design
 
 - Write the function SimonAnalysis( ) to calculate the Uniformly minimum-variance
-unbiased estimator (UMVUE), Confidence Intervals (Clopper-Pearson, Jung exact, and Mid-\emph{p}) and \emph{p}-Value given the design parameters obtained from the Adaptive Threshold Simon Design (ATS Simon)
+unbiased estimator (UMVUE), Confidence Intervals (Clopper-Pearson, Jung exact, 
+and Mid-$p$) and $p$-Value given the design parameters obtained from the Adaptive Threshold Simon Design (ATS Simon)
 
 - Make the Vignette
