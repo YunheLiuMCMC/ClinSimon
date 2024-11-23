@@ -1,11 +1,12 @@
+##' @title Post-Trial Inference for ATS and ATSS Simon Designs
+##'
+##' @description
 ##' SimonAnalysis( ) can be used to calculate the Uniformly minimum-variance
 ##' unbiased estimator (UMVUE), Confidence Intervals (Clopper-Pearson, Jung exact,
 ##' and Mid-\emph{p}) and \emph{p}-Value given the design parameters obtained
 ##' from the Adaptive Threshold Simon Design (ATS Simon) design and Adaptive
 ##' Threshold and Sample Simon Design (ATSS Simon) design using ATS_Design( ),
 ##' ATSS_Design_Stage1( ) and ATSS_Design_Stage2( ).
-##'
-##' @title Post-Trial Inference for ATS and ATSS Simon Designs
 ##'
 ##' @param m  Stopping stage of the ATS or ATSS Simon Designs
 ##' @param s  The number of responses observed in total
