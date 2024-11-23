@@ -41,13 +41,7 @@
 
 ATSS_Design_Stage2 <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
 
-  #' Compute P(Y<=x|n,p), where Y~Bin(n,p)
-  #'
-  #' @param x Number of successes
-  #' @param p Probability of success
-  #' @param n Number of trials
-  #' @return Cumulative probability
-  #' @noRd
+  # Compute P(Y<=x|n,p), where Y~Bin(n,p)
   cd <- function(x, p, n) {
     epsilon <- 1e-8
 
@@ -70,13 +64,7 @@ ATSS_Design_Stage2 <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
     return(y)
   }
 
-  #' Compute P(Y=x|n,p), where Y~Bin(n,p)
-  #'
-  #' @param x Number of successes
-  #' @param p Probability of success
-  #' @param n Number of trials
-  #' @return Probability mass
-  #' @noRd
+  # Compute P(Y=x|n,p), where Y~Bin(n,p)
   pd <- function(x, p, n) {
     epsilon <- 1e-8
 
@@ -100,15 +88,7 @@ ATSS_Design_Stage2 <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
     return(y)
   }
 
-  #' Compute power for given design under response rate p
-  #'
-  #' @param r1 Stage 1 rejection number
-  #' @param r2 Stage 2 rejection number
-  #' @param n1 Stage 1 sample size
-  #' @param n Total sample size
-  #' @param p Response probability
-  #' @return Power value
-  #' @noRd
+  # Compute power for given design under response rate p
   power <- function(r1, r2, n1, n, p) {
     y <- 0
     n2 <- n - n1
@@ -120,19 +100,9 @@ ATSS_Design_Stage2 <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
     return(y)
   }
 
-  #' Find optimal stage 2 critical value
-  #'
-  #' Finds c_star_star given r1_star, n1_star, and n_double_star such that
-  #' P(y1>r1_star, Y>c_star_star|p0,n1_star,n_double_star)<=alpha
-  #'
-  #' @param p0 Null response probability
-  #' @param p1 Alternative response probability
-  #' @param r1_star Stage 1 rejection number
-  #' @param n1_star Stage 1 sample size
-  #' @param n_double_star Total stage 2 sample size
-  #' @param alpha Type I error rate
-  #' @return Data frame with design parameters
-  #' @noRd
+  # Find optimal stage 2 critical value:
+  # Finds c_star_star given r1_star, n1_star, and n_double_star such that
+  # P(y1>r1_star, Y>c_star_star|p0,n1_star,n_double_star)<=alpha
   c_double_star <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
     n1 <- n1_star
     n <- n_double_star
