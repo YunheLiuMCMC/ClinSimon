@@ -1,3 +1,6 @@
+##' @title Adaptive Threshold and Sample Size Simon Design Two Stages
+##'
+##' @description
 ##' ATSS_Design_Stage2( ) provides an Adaptive Threshold and Sample Size Simon Design
 ##' (ATSS Simon) method for Simon's two stage design in oncology trials when the
 ##' realized sample sizes in the second stage is different from the planned
@@ -6,8 +9,6 @@
 ##' the second stage threshold r* to satisfy the type I error rate given
 ##' the interim analysis design first stage threshold r1* and actual two stages
 ##' sample sizes (n1*, n**).
-##'
-##' @title Adaptive Threshold and Sample Size Simon Design Two Stages
 ##'
 ##' @param p0 Unacceptable efficacy rate
 ##' @param p1 Desirable efficacy rate
