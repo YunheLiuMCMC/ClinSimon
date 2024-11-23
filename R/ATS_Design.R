@@ -44,16 +44,25 @@
 ##' @export
 
 
-ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
-  # Compute P(Y<=x|n,p), where Y~Bin(n,p)
+ATS_Design <- function(n1, n, n1_star, n_star, r1, r, p0, p1, alpha) {
+
+  #' Compute P(Y<=x|n,p), where Y~Bin(n,p)
+  #'
+  #' @param x Number of successes
+  #' @param p Probability of success
+  #' @param n Number of trials
+  #' @return Cumulative probability
+  #' @noRd
   cd <- function(x, p, n) {
-    epsilon <- 0.00000001
+    epsilon <- 1e-8
+
     if (p < epsilon) {
       p <- epsilon
     }
     if (p > 1 - epsilon) {
       p <- 1 - epsilon
     }
+
     if (x < 0) {
       y <- 0
     } else if (x > n) {
@@ -62,18 +71,27 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
       u <- floor(x)
       y <- pbinom(u, n, p)
     }
+
     return(y)
   }
 
-  # Compute P(Y=x|n,p), where Y~Bin(n,p)
+  #' Compute P(Y=x|n,p), where Y~Bin(n,p)
+  #'
+  #' @param x Number of successes
+  #' @param p Probability of success
+  #' @param n Number of trials
+  #' @return Probability mass
+  #' @noRd
   pd <- function(x, p, n) {
-    epsilon <- 0.00000001
+    epsilon <- 1e-8
+
     if (p < epsilon) {
       p <- epsilon
     }
     if (p > 1 - epsilon) {
       p <- 1 - epsilon
     }
+
     if (x < 0) {
       y <- 0
     } else if (x > n) {
@@ -83,25 +101,46 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
     } else {
       y <- dbinom(x, n, p)
     }
+
     return(y)
   }
 
-  # Compute the power for given design (r1, r, n1, n) under response rate p
+  #' Compute power for given design under response rate p
+  #'
+  #' @param r1 Stage 1 rejection number
+  #' @param r Total rejection number
+  #' @param n1 Stage 1 sample size
+  #' @param n Total sample size
+  #' @param p Response probability
+  #' @return Power value
+  #' @noRd
   power <- function(r1, r, n1, n, p) {
     y <- 0
     n2 <- n - n1
+
     for (i in (r1 + 1):n1) {
       y <- y + pd(i, p, n1) * (1 - cd(r - i, p, n2))
     }
+
     return(y)
   }
 
-  #Given the planned sample sizes of n1 and n, the planned PET,
-  #and the actual sample size of n1_star at the first stage,
-  #this subroutine finds the largest integer r1 such that P(Y1<=r1 | p0,n1_star) is closest to planned PET.
-  first_cutoff<-function(PET, n1, n, n1_star, p0){
+  #' Find largest integer r1 for planned PET
+  #'
+  #' Given the planned sample sizes and PET, finds the largest integer r1
+  #' such that P(Y1<=r1 | p0,n1_star) is closest to planned PET
+  #'
+  #' @param PET Planned PET value
+  #' @param n1 Planned stage 1 sample size
+  #' @param n Total planned sample size
+  #' @param n1_star Actual stage 1 sample size
+  #' @param p0 Null response probability
+  #' @return Vector containing cutoff and modified PET
+  #' @noRd
+  first_cutoff <- function(PET, n1, n, n1_star, p0) {
     m <- -1
     flag <- 0
+
     while ((flag == 0) & (m < n1_star + 1)) {
       y <- cd(m, p0, n1_star)
       if (y < PET) {
@@ -110,22 +149,37 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
         flag <- 1
       }
     }
+
     uu <- c(0, 0)
-    PET_l <- cd(m-1, p0, n1_star)
+    PET_l <- cd(m - 1, p0, n1_star)
     PET_u <- cd(m, p0, n1_star)
-    if (abs(PET_l-PET) <  abs(PET_u-PET)){
-      uu[1]<-m-1
-    } else{
-      uu[1]<-m
+
+    if (abs(PET_l - PET) < abs(PET_u - PET)) {
+      uu[1] <- m - 1
+    } else {
+      uu[1] <- m
     }
 
-    PET_modified<-cd(uu[1], p0, n1_star)
+    PET_modified <- cd(uu[1], p0, n1_star)
     uu[2] <- PET_modified
+
     return(uu)
   }
 
-
-  new_design<-function(n1, n, n1_star, n_star, r1, r, p0, p1, alpha){
+  #' Calculate new design parameters
+  #'
+  #' @param n1 Planned stage 1 sample size
+  #' @param n Total planned sample size
+  #' @param n1_star Actual stage 1 sample size
+  #' @param n_star Total actual sample size
+  #' @param r1 Planned stage 1 rejection number
+  #' @param r Total planned rejection number
+  #' @param p0 Null response probability
+  #' @param p1 Alternative response probability
+  #' @param alpha Type I error rate
+  #' @return Data frame with design parameters
+  #' @noRd
+  new_design <- function(n1, n, n1_star, n_star, r1, r, p0, p1, alpha) {
     PET <- pbinom(r1, n1, p0)
     uu <- first_cutoff(PET, n1, n, n1_star, p0)
     a <- uu[1]
@@ -133,17 +187,16 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
     flag <- 0
     c <- a - 1
 
-    critical_v<-qnorm(1-alpha/2)
-    prop<-sqrt(n_star/(n))
-    alpha_spending<-2-2*pnorm(critical_v/prop)
-    alpha_spending<-min(alpha_spending,alpha)
+    critical_v <- qnorm(1 - alpha / 2)
+    prop <- sqrt(n_star / n)
+    alpha_spending <- 2 - 2 * pnorm(critical_v / prop)
+    alpha_spending <- min(alpha_spending, alpha)
 
     while ((flag == 0) & (c < n_star + 1)) {
       c <- c + 1
       al <- power(a, c, n1_star, n_star, p0)
+
       if (al <= alpha_spending) {
-        ##Change flag, so we stop searching when achieving the target Type I error
-        ##We can ensure the highest power under this situation
         flag <- 1
         aaa <- a
         aal <- al
@@ -151,7 +204,9 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
         aave <- n2_star * (1 - cd(a, p0, n1_star)) + n1_star
       }
     }
+
     vv <- c(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
     if (flag == 1) {
       vv[1] <- aaa
       vv[2] <- c
@@ -163,21 +218,19 @@ ATS_Design <- function(n1,n,n1_star,n_star,r1,r,p0,p1,alpha) {
       vv[8] <- aave
       vv[9] <- uu[2]
     }
-    Redesign <- round(as.data.frame(t(vv)),3)
-    colnames(Redesign) <- c("r1*", "r*", "n1*", "n*", "alpha(n*)",
-                            "Type I", "Power", "EN(p0)", "PET(p0)")
+
+    Redesign <- round(as.data.frame(t(vv)), 3)
+    colnames(Redesign) <- c(
+      "r1*", "r*", "n1*", "n*", "alpha(n*)",
+      "Type I", "Power", "EN(p0)", "PET(p0)"
+    )
     rownames(Redesign) <- c("Adaptive Threshold Simon Design")
-    return (Redesign)
+
+    return(Redesign)
   }
-  ########################## Final Results #####################################
+
+  # Calculate final results
   AlterDesign <- new_design(n1, n, n1_star, n_star, r1, r, p0, p1, alpha)
+
   return(AlterDesign)
 }
-
-
-
-
-
-
-
-
