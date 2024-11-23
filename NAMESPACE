@@ -3,4 +3,5 @@
 export(ATSS_Design_Stage1)
 export(ATSS_Design_Stage2)
 export(ATS_Design)
+export(SimonAnalysis)
 import(stats)
