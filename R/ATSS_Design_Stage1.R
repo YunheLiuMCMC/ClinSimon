@@ -1,3 +1,6 @@
+##' @title Adaptive Threshold and Sample Size Simon Design Interim Analysis
+##'
+##' @description
 ##' ATSS_Design_Stage1( ) provides an Adaptive Threshold and Sample Size Simon Design
 ##' (ATSS Simon) method for Simon's two stage design in oncology trials when the
 ##' realized sample sizes in the first stage is different from the planned sample
@@ -7,8 +10,6 @@
 ##' rate and power. In addition, the ATSS Simon design also satisfies the other
 ##' criteria as in the originally planned design, such as minimizing the average
 ##' sample size under the null hypothesis H0.
-##'
-##' @title Adaptive Threshold and Sample Size Simon Design Interim Analysis
 ##'
 ##' @param p0 Unacceptable efficacy rate
 ##' @param p1 Desirable efficacy rate
