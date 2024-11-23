@@ -1,3 +1,40 @@
+##' ATSS_Design_Stage1( ) provides an Adaptive Threshold and Sample Size Simon Design
+##' (ATSS Simon) method for Simon's two stage design in oncology trials when the
+##' realized sample sizes in the first stage is different from the planned sample
+##' sizes in the first stage. When under-enrollment or over-enrollment occurs at
+##' the first stage, we identify the design parameters (r1*, r*, n*) based
+##' on the actual sample size n1* ar the first stage to satisfy the type I error
+##' rate and power. In addition, the ATSS Simon design also satisfies the other
+##' criteria as in the originally planned design, such as minimizing the average
+##' sample size under the null hypothesis H0.
+##'
+##' @title Adaptive Threshold and Sample Size Simon Design Interim Analysis
+##'
+##' @param p0 Unacceptable efficacy rate
+##' @param p1 Desirable efficacy rate
+##' @param n1_star The actual number of patients in stage 1
+##' @param alpha Original Type-I error rate
+##' @param beta Original Type-II error rate
+##'
+##' @return a data frame includes the Adaptive Threshold and Sample Simon Design
+##' interim analysis' adjusted first stage threshold r1*, second stage threshold
+##' r*, actual number of patients in the first stage n1*, new design planned two
+##' stages' patients n*, attained Type-I error rate and Power, Average sample
+##' size under null hypothesis EN(p0) and Probability of early termination
+##' under null hypothesis PET(p0).
+##'
+##' @examples
+##' # Adaptive Threshold and Sample Size Simon Design interim analysis case 1
+##' ATSS_Design_Stage1(0.05, 0.20, 20, 0.10, 0.10)
+##' #                    r1* r* n1* n* Type I Power EN(p0) PET(p0)
+##' # ATSS_Design_Stage1   1  3  20 35   0.08 0.901 23.962   0.736
+##'
+##' # Adaptive Threshold and Sample Size Simon Design interim analysis case 2
+##' ATSS_Design_Stage1(0.10, 0.30, 18, 0.10, 0.10)
+##' #                    r1* r* n1* n* Type I Power EN(p0) PET(p0)
+##' # ATSS_Design_Stage1   2  4  18 26  0.099 0.904  20.13   0.734
+##'
+##' @export
 
 
 ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
