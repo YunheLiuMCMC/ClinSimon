@@ -40,13 +40,7 @@
 
 ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
 
-  #' Compute P(Y<=x|n,p), where Y~Bin(n,p)
-  #'
-  #' @param x Number of successes
-  #' @param p Probability of success
-  #' @param n Number of trials
-  #' @return Cumulative probability
-  #' @noRd
+  # Compute P(Y<=x|n,p), where Y~Bin(n,p)
   cd <- function(x, p, n) {
     epsilon <- 1e-8
 
@@ -69,13 +63,7 @@ ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
     return(y)
   }
 
-  #' Compute P(Y=x|n,p), where Y~Bin(n,p)
-  #'
-  #' @param x Number of successes
-  #' @param p Probability of success
-  #' @param n Number of trials
-  #' @return Probability mass
-  #' @noRd
+  # Compute P(Y=x|n,p), where Y~Bin(n,p)
   pd <- function(x, p, n) {
     epsilon <- 1e-8
 
@@ -99,15 +87,7 @@ ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
     return(y)
   }
 
-  #' Compute power for given design under response rate p
-  #'
-  #' @param r1 Stage 1 rejection number
-  #' @param r2 Stage 2 rejection number
-  #' @param n1 Stage 1 sample size
-  #' @param n Total sample size
-  #' @param p Response probability
-  #' @return Power value
-  #' @noRd
+  # Compute power for given design under response rate p
   power <- function(r1, r2, n1, n, p) {
     y <- 0
     n2 <- n - n1
@@ -119,13 +99,7 @@ ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
     return(y)
   }
 
-  #' Find largest integer satisfying beta constraint
-  #'
-  #' @param p1 Alternative response probability
-  #' @param n1 Stage 1 sample size
-  #' @param beta Type II error rate
-  #' @return Upper bound integer
-  #' @noRd
+  # Find largest integer satisfying beta constraint
   a_up <- function(p1, n1, beta) {
     flag <- 0
     m <- -1
@@ -143,19 +117,10 @@ ATSS_Design_Stage1 <- function(p0, p1, n1_star, alpha, beta) {
     return(uu)
   }
 
-  #' Find optimal design parameters
-  #'
-  #' Finds design (a_star,c_star,n1_star,n_star) for given n1_star at stage 1
-  #' such that type I and II error constraints are satisfied while minimizing
-  #' average sample size
-  #'
-  #' @param p0 Null response probability
-  #' @param p1 Alternative response probability
-  #' @param n1_star Actual stage 1 sample size
-  #' @param alpha Type I error rate
-  #' @param beta Type II error rate
-  #' @return Data frame with design parameters
-  #' @noRd
+  # Find optimal design parameters:
+  # Finds design (a_star,c_star,n1_star,n_star) for given n1_star at stage 1
+  # such that type I and II error constraints are satisfied while minimizing
+  # average sample size
   modify <- function(p0, p1, n1_star, alpha, beta) {
     flag <- 0
     ave <- 100
