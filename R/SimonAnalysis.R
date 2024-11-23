@@ -1,3 +1,44 @@
+##' SimonAnalysis( ) can be used to calculate the Uniformly minimum-variance
+##' unbiased estimator (UMVUE), Confidence Intervals (Clopper-Pearson, Jung exact,
+##' and Mid-\emph{p}) and \emph{p}-Value given the design parameters obtained
+##' from the Adaptive Threshold Simon Design (ATS Simon) design and Adaptive
+##' Threshold and Sample Simon Design (ATSS Simon) design using ATS_Design( ),
+##' ATSS_Design_Stage1( ) and ATSS_Design_Stage2( ).
+##'
+##' @title Post-Trial Inference for ATS and ATSS Simon Designs
+##'
+##' @param m  Stopping stage of the ATS or ATSS Simon Designs
+##' @param s  The number of responses observed in total
+##' @param n1 The actual number of patients in stage 1
+##' @param n2 The actual total number of patients in stages 1 and 2
+##' @param r1 The design threshold in stage 1
+##' @param r The design threshold in stage 2
+##' @param alpha Type-I error rate
+##' @param quantile Two tails probability of the confidence interval
+##' @param CI_option The type of confidence interval, the character can be typed by
+##' "CP", "Jung" or "MIDp" corresponding to the Clopper-Pearson, Jung exact,
+##' or Midp confidence intervals
+##' @param p0 Unacceptable efficacy rate
+##'
+##' @return a data frame includes the Uniformly minimum-variance
+##' unbiased estimator (UMVUE), chosen Confidence Interval and \emph{p}-Value
+##'
+##' @import stats
+##'
+##' @examples
+##' # Post-Trial inference for ATS or ATSS Simon Designs case 1
+##' SimonAnalysis(2,7,13,30,3,12,0.05,c(0.025,0.975),"MIDp",0.40)
+##' # Analysis Plan
+##' #                      UMVUE CI(lower) CI(upper) p_Val
+##' # Post-Trial Inference 0.322     0.108     0.538 0.831
+##'
+##' # Post-Trial inference for ATS or ATSS Simon Designs case 2
+##' SimonAnalysis(2,16,11,28,2,13,0.077,c(0.025,0.975),"Jung",0.25)
+##' # Analysis Plan
+##' #                     UMVUE CI(lower) CI(upper) p_Val
+##' # Post-Trial Inference 0.429     0.257     0.568 0.019
+##'
+##' @export
 
 
 SimonAnalysis <- function(m,s,n1,n2,r1,r,alpha,quantile,CI_option,p0) {
