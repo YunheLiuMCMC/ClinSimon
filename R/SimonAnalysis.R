@@ -44,8 +44,7 @@
 
 SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
 
-  #' Calculate numerator sum for UMVUE
-  #' @noRd
+  # Calculate numerator sum for UMVUE
   sum_numer <- function(lower, upper, n1, n2, s) {
     sum <- 0
     for (x1 in lower:upper) {
@@ -54,8 +53,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(sum)
   }
 
-  #' Calculate denominator sum for UMVUE
-  #' @noRd
+  # Calculate denominator sum for UMVUE
   sum_denom <- function(lower, upper, n1, n2, s) {
     sum <- 0
     for (x1 in lower:upper) {
@@ -64,8 +62,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(sum)
   }
 
-  #' Calculate point estimate (UMVUE)
-  #' @noRd
+  # Calculate point estimate (UMVUE)
   point_est <- function(m, s, n1, n2, r1, r) {
     if (m == 1 & s > r1) {
       response_est <- paste("The number of response people should be",
@@ -86,8 +83,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(response_est)
   }
 
-  #' Calculate sum for Clopper-Pearson interval
-  #' @noRd
+  # Calculate sum for Clopper-Pearson interval
   sum_pearson <- function(lower_bound, upper_bound, n1, n2, alpha, p) {
     sum <- 0
     for (k in lower_bound:upper_bound) {
@@ -97,8 +93,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(sum)
   }
 
-  #' Calculate Clopper-Pearson confidence interval
-  #' @noRd
+  # Calculate Clopper-Pearson confidence interval
   CP_CI_est <- function(s, n1, n2, alpha) {
     lower_left <- s
     upper_left <- n1 + n2
@@ -125,8 +120,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(c(lower_bound, upper_bound))
   }
 
-  #' Calculate joint probability sum for Jung's interval
-  #' @noRd
+  # Calculate joint probability sum for Jung's interval
   sum_joint <- function(lower, upper, n1, n2, s, p) {
     sum <- 0
     for (x1 in lower:upper) {
@@ -136,8 +130,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(sum)
   }
 
-  #' Calculate joint probability
-  #' @noRd
+  # Calculate joint probability
   joint_prob <- function(m, s, n1, n2, r1, r, p) {
     if (m == 1) {
       prob <- choose(n1, s) * p^s * (1 - p)^(n1 - s)
@@ -151,8 +144,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(prob)
   }
 
-  #' Calculate Jung's confidence interval function
-  #' @noRd
+  # Calculate Jung's confidence interval function
   Jung_conf_interval <- function(m, s, n1, n2, r1, r, limit, p) {
     matrix_ms <- matrix(nrow = n1 + n2 + 1, ncol = 4)
     matrix_ms[, 1] <- c(rep(1, times = r1 + 1), rep(2, times = n1 + n2 - r1))
@@ -177,8 +169,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(estimate)
   }
 
-  #' Calculate Jung's confidence interval
-  #' @noRd
+  # Calculate Jung's confidence interval
   Jung_CI_est <- function(m, s, n1, n2, r1, r, quantile) {
     lower_root <- stats::uniroot(Jung_conf_interval,
                                  interval = c(0, 1),
@@ -205,8 +196,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(c(lower_bound, upper_bound))
   }
 
-  #' Calculate Mid-p confidence interval function
-  #' @noRd
+  # Calculate Mid-p confidence interval function
   MIDp_conf_interval <- function(m, s, n1, n2, r1, r, limit, p) {
     matrix_ms <- matrix(nrow = n1 + n2 + 1, ncol = 4)
     matrix_ms[, 1] <- c(rep(1, times = r1 + 1), rep(2, times = n1 + n2 - r1))
@@ -233,8 +223,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(estimate)
   }
 
-  #' Calculate Mid-p confidence interval
-  #' @noRd
+  # Calculate Mid-p confidence interval
   MIDp_CI_est <- function(m, s, n1, n2, r1, r, quantile) {
     lower_root <- stats::uniroot(MIDp_conf_interval,
                                  interval = c(0, 1),
@@ -261,8 +250,7 @@ SimonAnalysis <- function(m, s, n1, n2, r1, r, alpha, quantile, CI_option, p0) {
     return(c(lower_bound, upper_bound))
   }
 
-  #' Calculate p-value
-  #' @noRd
+  # Calculate p-value
   p_cal <- function(m, s, n1, n2, r1, r, p0) {
     umvue <- point_est(m, s, n1, n2, r1, r)
     p <- p0
