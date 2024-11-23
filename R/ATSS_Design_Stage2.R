@@ -39,16 +39,25 @@
 ##' @export
 
 
-ATSS_Design_Stage2 <- function(p0,p1,r1_star,n1_star,n_double_star, alpha) {
-  # Compute P(Y<=x|n,p), where Y~Bin(n,p)
+ATSS_Design_Stage2 <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
+
+  #' Compute P(Y<=x|n,p), where Y~Bin(n,p)
+  #'
+  #' @param x Number of successes
+  #' @param p Probability of success
+  #' @param n Number of trials
+  #' @return Cumulative probability
+  #' @noRd
   cd <- function(x, p, n) {
-    epsilon <- 0.00000001
+    epsilon <- 1e-8
+
     if (p < epsilon) {
       p <- epsilon
     }
     if (p > 1 - epsilon) {
       p <- 1 - epsilon
     }
+
     if (x < 0) {
       y <- 0
     } else if (x > n) {
@@ -57,18 +66,27 @@ ATSS_Design_Stage2 <- function(p0,p1,r1_star,n1_star,n_double_star, alpha) {
       u <- floor(x)
       y <- pbinom(u, n, p)
     }
+
     return(y)
   }
 
-  # Compute P(Y=x|n,p), where Y~Bin(n,p)
+  #' Compute P(Y=x|n,p), where Y~Bin(n,p)
+  #'
+  #' @param x Number of successes
+  #' @param p Probability of success
+  #' @param n Number of trials
+  #' @return Probability mass
+  #' @noRd
   pd <- function(x, p, n) {
-    epsilon <- 0.00000001
+    epsilon <- 1e-8
+
     if (p < epsilon) {
       p <- epsilon
     }
     if (p > 1 - epsilon) {
       p <- 1 - epsilon
     }
+
     if (x < 0) {
       y <- 0
     } else if (x > n) {
@@ -78,34 +96,58 @@ ATSS_Design_Stage2 <- function(p0,p1,r1_star,n1_star,n_double_star, alpha) {
     } else {
       y <- dbinom(x, n, p)
     }
+
     return(y)
   }
 
-  # Compute the power for given design (r1, r2, n1, n) under response rate p
+  #' Compute power for given design under response rate p
+  #'
+  #' @param r1 Stage 1 rejection number
+  #' @param r2 Stage 2 rejection number
+  #' @param n1 Stage 1 sample size
+  #' @param n Total sample size
+  #' @param p Response probability
+  #' @return Power value
+  #' @noRd
   power <- function(r1, r2, n1, n, p) {
     y <- 0
     n2 <- n - n1
+
     for (i in (r1 + 1):n1) {
       y <- y + pd(i, p, n1) * (1 - cd(r2 - i, p, n2))
     }
+
     return(y)
   }
 
-  ##Find c_star_star given r1_star, n1_star, and n_double_star such that
-  ##P(y1>r1_star, Y>c_star_star|p0,n1_star,n_double_star)<=alpha.
-  c_double_star <- function(p0,p1,r1_star,n1_star,n_double_star,alpha){
+  #' Find optimal stage 2 critical value
+  #'
+  #' Finds c_star_star given r1_star, n1_star, and n_double_star such that
+  #' P(y1>r1_star, Y>c_star_star|p0,n1_star,n_double_star)<=alpha
+  #'
+  #' @param p0 Null response probability
+  #' @param p1 Alternative response probability
+  #' @param r1_star Stage 1 rejection number
+  #' @param n1_star Stage 1 sample size
+  #' @param n_double_star Total stage 2 sample size
+  #' @param alpha Type I error rate
+  #' @return Data frame with design parameters
+  #' @noRd
+  c_double_star <- function(p0, p1, r1_star, n1_star, n_double_star, alpha) {
     n1 <- n1_star
     n <- n_double_star
     a <- r1_star
     flag <- 0
     ff <- 0
-    cc <- a-1
+    cc <- a - 1
+
     while ((ff == 0) & (cc < n + 1)) {
-      cc <- cc+1
-      al <- power(a,cc,n1,n,p0)
-      pw <- power(a,cc,n1,n,p1)
-      if (al<=alpha) {
-        ave <- n1+(1-cd(a,p0,n1_star))*(n-n1)
+      cc <- cc + 1
+      al <- power(a, cc, n1, n, p0)
+      pw <- power(a, cc, n1, n, p1)
+
+      if (al <= alpha) {
+        ave <- n1 + (1 - cd(a, p0, n1_star)) * (n - n1)
         ff <- 1
         flag <- 1
         aaa <- a
@@ -118,8 +160,10 @@ ATSS_Design_Stage2 <- function(p0,p1,r1_star,n1_star,n_double_star, alpha) {
         PET <- pbinom(a, n1, p0)
       }
     }
-    vv <- array(0, dim = c(9,1))
+
+    vv <- array(0, dim = c(9, 1))
     vv[1] <- flag
+
     if (flag == 1) {
       vv[2] <- aaa
       vv[3] <- ccc
@@ -130,18 +174,19 @@ ATSS_Design_Stage2 <- function(p0,p1,r1_star,n1_star,n_double_star, alpha) {
       vv[8] <- aave
       vv[9] <- PET
     }
-    Redesign <- round(as.data.frame(t(vv[-1,])),3)
-    colnames(Redesign) <- c("r1*", "r*", "n1*", "n**",
-                            "Type I", "Power", "EN(p0)", "PET(p0)")
+
+    Redesign <- round(as.data.frame(t(vv[-1, ])), 3)
+    colnames(Redesign) <- c(
+      "r1*", "r*", "n1*", "n**",
+      "Type I", "Power", "EN(p0)", "PET(p0)"
+    )
     rownames(Redesign) <- c("ATSS_Design_Stage2")
-    return (Redesign)
+
+    return(Redesign)
   }
-  ########################## Final Results #####################################
-  ATSS_Design_Stage2 <- c_double_star(p0,p1,r1_star,n1_star,n_double_star,alpha)
+
+  # Calculate final results
+  ATSS_Design_Stage2 <- c_double_star(p0, p1, r1_star, n1_star, n_double_star, alpha)
+
   return(ATSS_Design_Stage2)
 }
-
-
-
-
-
