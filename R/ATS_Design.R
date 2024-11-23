@@ -1,3 +1,6 @@
+##' @title Adaptive Threshold Simon	Design
+##'
+##' @description
 ##' ATS_Design( ) provides an Adaptive Threshold Simon Design (ATS Simon) method
 ##' for Simon’s two-stage design in oncology trials when the realized sample sizes
 ##' in the first stage and/or the second stage(s) are different from the planned
@@ -7,8 +10,6 @@
 ##' the second stages to satisfy the type I error rate as the original planned
 ##' design (note: power will decrease if the realized sample size is smaller than
 ##' the original one).
-##'
-##' @title Adaptive Threshold Simon	Design
 ##'
 ##' @param n1 The planned number of patients in stage 1
 ##' @param n  The planned number of patients in stages 1 and 2
