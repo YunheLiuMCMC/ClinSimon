@@ -35,6 +35,6 @@ This is a basic example which shows you how to solve a common problem:
 ## Vignette
 For a detailed overview and examples, check out the [ClinSimon vignette](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/vignettes/ClinSimon.pdf).
 
-##License
+## License
 This package is free and open source software, licensed under GPL
 (&gt;=3).
