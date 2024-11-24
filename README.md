@@ -68,12 +68,13 @@ ATS_Design(n1=14,n=44,n1_star=11,n_star=41,r1=3,r=14,p0=0.25,p1=0.45,alpha=0.1)
 ```
 
 The updated design parameters by ATS Simon design method are (2, 14). We also 
-output actual sample sizes of stage 1 and the total sample size. The type I error 
-rate of this updated design is 0.06, which is below the original type I error constraint 
-of 0.1. As we know, if alpha decreases, power will also decrease. Therefore, the
-current power of 85.4% is lower than the original design's 90% as expected, but
-still close to the original power. Additionally, the probability of early 
-termination is 0.455, which is close to the original design's 0.521.  
+output actual sample sizes of stage 1 and the total sample size (11, 41). The 
+type I error rate of this updated design is 0.06, which is below the original 
+type I error constraint of 0.1. As we know, if alpha decreases, power will also 
+decrease. Therefore, the current power of 85.4% is lower than the original 
+design's 90% as expected, but still close to the original power. Additionally, 
+the probability of early termination is 0.455, which is close to the original 
+design's 0.521.  
 
 
 ## Vignette
