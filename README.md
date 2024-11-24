@@ -51,6 +51,7 @@ trial
 # Optimal     3 14 14 44  28.36  0.5213 0.000 0.026
 ```
 
+Right now, one clinician decided to use Optimal deisgn to recruit patients.
 Suppose we currently have outcome data for only 11 patients in the $1^{st}$ stage
 and assume the $2^{nd}$ stage sample size for evaluable patients remains as 
 planned, We can use `ATS_Design()` to provide updated thresholds for the 
@@ -61,12 +62,14 @@ design specifies a sample size of 30 for the second stage.
 
 ```r
 ATS_Design(n1=14,n=44,n1_star=11,n_star=41,r1=3,r=14,p0=0.25,p1=0.45,alpha=0.1)
+
+#                                 r1* r* n1* n* alpha(n*) Type I Power EN(p0) PET(p0)
+# Adaptive Threshold Simon Design   2 14  11 41     0.088   0.06 0.854 27.344   0.455
 ```
 
-The updated design parameters, $(r_1^{*},r^{*})$, by ATS Simon design method are
-(2, 14). We also output $(n_1^{*},n^{*})$ and they are just actual sample sizes
-of stage 1 and the total sample size. The type I error rate of 
-this updated design is 0.06, which is below the original type I error constraint 
+The updated design parameters by ATS Simon design method are (2, 14). We also 
+output actual sample sizes of stage 1 and the total sample size. The type I error 
+rate of this updated design is 0.06, which is below the original type I error constraint 
 of 0.1. As we know, if alpha decreases, power will also decrease. Therefore, the
 current power of 85.4% is lower than the original design's 90% as expected, but
 still close to the original power. Additionally, the probability of early 
