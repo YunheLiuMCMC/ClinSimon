@@ -1,7 +1,3 @@
----
-output: github_document
----
-
 # Final Project - R package
 
 ## Intended Usage
