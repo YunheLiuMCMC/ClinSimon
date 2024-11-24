@@ -1,4 +1,4 @@
-# Final Project - R package
+# ClinSimon
 
 ## Intended Usage
 Providing an Adaptive Threshold Simon Design (ATS Simon) method for Simon's 
