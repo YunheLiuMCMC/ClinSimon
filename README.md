@@ -1,28 +1,30 @@
 # ClinSimon
 
-## Intended Usage
-Implements methods for managing enrollment challenges in Simon's 
-    Two-Stage Design for phase II clinical trials. Provides functions for:
-    (1) adaptive threshold adjustment to handle under-enrollment,
-    (2) sample size recalibration for over-enrollment scenarios, and
-    (3) comprehensive post-inference analysis tools including power calculation,
-    confidence intervals, and hypothesis testing. These methods help maintain 
-    statistical rigor while adapting to real-world enrollment variations in
-    clinical trials.
+## Overview
 
-## Installation Instruction
-My repository is public, so you can use following R code to download ClinSimon
-package from GitHub:   
+**ClinSimon** provides methods to address enrollment challenges in Simon's Two-Stage Design for phase II clinical trials. The package offers tools to:
+
+1. **Adaptive threshold adjustment**: Manage under-enrollment scenarios.
+2. **Sample size recalibration**: Handle over-enrollment cases.
+3. **Post-inference analysis**: Perform power calculations, confidence interval estimation, and hypothesis testing.
+
+These methods help maintain statistical rigor while accommodating real-world enrollment variations in clinical trials.
+
+## Installation Instructions
+
+You can install the **ClinSimon** package directly from GitHub using the following R code:
 ```r
+# Uncomment and run the following line if you don't already have devtools installed:
 # install.packages("devtools")
+
+# Install ClinSimon from GitHub:
 devtools::install_github("YunheLiuMCMC/ClinSimon")
 ```
 
-After making this package Vignette, you can use following R code to download 
-ClinSimon package from GitHub:
+If the package includes a vignette, you can install it with the vignette built:
 ```r
-# install.packages("devtools")
-devtools::install_github("YunheLiuMCMC/ClinSimon"", build_vignettes = TRUE)
+# Install ClinSimon with vignette support:
+devtools::install_github("YunheLiuMCMC/ClinSimon", build_vignettes = TRUE)
 ```
 
 ## What is Left
