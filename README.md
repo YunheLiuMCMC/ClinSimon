@@ -1,14 +1,14 @@
 # ClinSimon
 
 ## Intended Usage
-Providing an Adaptive Threshold Simon Design (ATS Simon) method for Simon's 
-two-stage design in oncology trials when the realized sample sizes in the $1^{st}$ 
-and/or $2^{nd}$ stage(s) are different from the planned sample sizes in the $1^{st}$ 
-and/or $2^{nd}$ stage(s). The proposed ATS Simon design tries to follow 
-sample sizes of the original design, to that end, this design updates the original
-thresholds of $(r_1, r)$ in the $1^{st}$ and/or the $2^{nd}$ stage(s) to satisfy the 
-type I error rate as the original planned design (note: power will decrease if the
-realized sample size is smaller than the original one).
+Implements methods for managing enrollment challenges in Simon's 
+    Two-Stage Design for phase II clinical trials. Provides functions for:
+    (1) adaptive threshold adjustment to handle under-enrollment,
+    (2) sample size recalibration for over-enrollment scenarios, and
+    (3) comprehensive post-inference analysis tools including power calculation,
+    confidence intervals, and hypothesis testing. These methods help maintain 
+    statistical rigor while adapting to real-world enrollment variations in
+    clinical trials.
 
 ## Installation Instruction
 
