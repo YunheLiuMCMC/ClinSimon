@@ -2,6 +2,9 @@
 title: "ClinSimon_Instruction"
 author: "Yunhe Liu"
 output:
+  pdf_document: 
+    toc: true
+    latex_engine: xelatex
   html_document:
     toc: true
     toc_depth: '3'
@@ -543,9 +546,12 @@ exact confidence interval，option *`"Jung"`* means Jung’s confidence interval
 option *`"MIDp"`* means mid-$p$ approach confidence interval. 
 
 ```{r}
-SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975), CI_option = "CP", p0=0.25)
-SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975), CI_option = "Jung", p0=0.25)
-SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975), CI_option = "MIDp", p0=0.25)
+SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975), 
+              CI_option = "CP", p0=0.25)
+SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975),
+              CI_option = "Jung", p0=0.25)
+SimonAnalysis(m=2, s=20, n1=11, n2=30, r1=2, r=14, alpha=0.088, quantile=c(0.025,0.975), 
+              CI_option = "MIDp", p0=0.25)
 ```
 Note: the computed UMVUEs and p values are the same since the above introduced
 same UMVUE method and approach for computing p value applied to all the three
@@ -575,9 +581,12 @@ exact confidence interval，option *`"Jung"`* means Jung’s confidence interval
 option *`"MIDp"`* means mid-$p$ approach confidence interval.
 
 ```{r}
-SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), CI_option = "CP", p0=0.25)
-SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), CI_option = "Jung", p0=0.25)
-SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), CI_option = "MIDp", p0=0.25)
+SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), 
+              CI_option = "CP", p0=0.25)
+SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), 
+              CI_option = "Jung", p0=0.25)
+SimonAnalysis(m=2, s=22, n1=11, n2=36, r1=2, r=15, alpha=0.1, quantile=c(0.025,0.975), 
+              CI_option = "MIDp", p0=0.25)
 ```
 
 We can see the point estimate (UMVUE) for the response rate is 0.478; 
