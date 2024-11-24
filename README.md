@@ -11,13 +11,17 @@ Implements methods for managing enrollment challenges in Simon's
     clinical trials.
 
 ## Installation Instruction
-
-My repository is public, so you can use following R code to download:   
+My repository is public, so you can use following R code to download ClinSimon
+package from GitHub:   
 ```r
+# install.packages("devtools")
 devtools::install_github("YunheLiuMCMC/ClinSimon")
 ```
-After making this package Vignette, you can use following R code to download:
+
+After making this package Vignette, you can use following R code to download 
+ClinSimon package from GitHub:
 ```r
+# install.packages("devtools")
 devtools::install_github("YunheLiuMCMC/ClinSimon"", build_vignettes = TRUE)
 ```
 
