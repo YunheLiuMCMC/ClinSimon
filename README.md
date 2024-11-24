@@ -28,8 +28,49 @@ devtools::install_github("YunheLiuMCMC/ClinSimon", build_vignettes = TRUE)
 ```
 
 ## Example
+```r
+# Load the ClinSimon package
+library(ClinSimon)
 
-This is a basic example which shows you how to solve a common problem:
+# Generate a Simon two stage design from package Clinfun
+library(Clinfun)
+# Specify the parameters and constraints
+trial = ph2simon(0.25, 0.45, 0.1, 0.1)
+# Print
+trial
+
+# Simon 2-stage Phase II design 
+
+# Unacceptable response rate:  0.25 
+# Desirable response rate:  0.45 
+# Error rates: alpha =  0.1 ; beta =  0.1 
+
+#            r1 n1  r  n EN(p0) PET(p0)   qLo   qHi
+# Minimax     5 23 13 39  31.50  0.4685 0.752 1.000
+# Admissible  3 15 13 40  28.47  0.4613 0.026 0.752
+# Optimal     3 14 14 44  28.36  0.5213 0.000 0.026
+```
+
+Suppose we currently have outcome data for only 11 patients in the $1^{st}$ stage
+and assume the $2^{nd}$ stage sample size for evaluable patients remains as 
+planned, We can use `ATS_Design()` to provide updated thresholds for the 
+interim analysis, without	needing	to wait for the	number of evaluable	patients 
+to reach 14. This means the input *`n1_star`* is 11 and *`n_star`* is 41 (=11+30 
+instead of the original 14+30 as the total sample size), as the original optimal
+design specifies a sample size of 30 for the second stage.  
+
+```r
+ATS_Design(n1=14,n=44,n1_star=11,n_star=41,r1=3,r=14,p0=0.25,p1=0.45,alpha=0.1)
+```
+
+The updated design parameters, $(r_1^{*},r^{*})$, by ATS Simon design method are
+(2, 14). We also output $(n_1^{*},n^{*})$ and they are just actual sample sizes
+of stage 1 and the total sample size. The type I error rate of 
+this updated design is 0.06, which is below the original type I error constraint 
+of 0.1. As we know, if alpha decreases, power will also decrease. Therefore, the
+current power of 85.4% is lower than the original design's 90% as expected, but
+still close to the original power. Additionally, the probability of early 
+termination is 0.455, which is close to the original design's 0.521.  
 
 
 ## Vignette
