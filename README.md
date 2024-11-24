@@ -1,5 +1,5 @@
 ---
-output: html_document
+output: github_document
 ---
 
 # Final Project - R package
