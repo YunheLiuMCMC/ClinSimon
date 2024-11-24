@@ -27,6 +27,19 @@ If the package includes a vignette, you can install it with the vignette built:
 devtools::install_github("YunheLiuMCMC/ClinSimon", build_vignettes = TRUE)
 ```
 
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+
+## Vignette
+For a detailed overview and examples, check out the [ClinSimon vignette](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/vignettes/ClinSimon.pdf).
+
+
+
+
+
+
 ## What is Left
 
 - Write the function ATSS_Design( ) to provide an Adaptive Threshold and Sample Size Simon Design
