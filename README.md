@@ -35,17 +35,6 @@ This is a basic example which shows you how to solve a common problem:
 ## Vignette
 For a detailed overview and examples, check out the [ClinSimon vignette](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/vignettes/ClinSimon.pdf).
 
-
-
-
-
-
-## What is Left
-
-- Write the function ATSS_Design( ) to provide an Adaptive Threshold and Sample Size Simon Design
-
-- Write the function SimonAnalysis( ) to calculate the Uniformly minimum-variance
-unbiased estimator (UMVUE), Confidence Intervals (Clopper-Pearson, Jung exact, 
-and Mid-$p$) and $p$-Value given the design parameters obtained from the Adaptive Threshold Simon Design (ATS Simon)
-
-- Make the Vignette
+##License
+This package is free and open source software, licensed under GPL
+(&gt;=3).
