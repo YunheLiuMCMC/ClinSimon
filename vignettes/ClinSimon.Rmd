@@ -1,15 +1,15 @@
 ---
-title: "ClinSimon_Instruction"
+title: "ClinSimon"
 author: "Yunhe Liu"
 output:
-  pdf_document: 
-    toc: true
-    latex_engine: xelatex
   html_document:
     toc: true
     toc_depth: '3'
     df_print: paged
-vignette: "%\\VignetteIndexEntry{ClinSimon} %\\VignetteEncoding{UTF-8} %\\VignetteEngine{knitr::rmarkdown}\n"
+vignette: >
+  %\VignetteIndexEntry{ClinSimon}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, include = FALSE}
