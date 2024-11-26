@@ -82,6 +82,6 @@ For a detailed overview and examples, check out the [ClinSimon vignette](https:/
 
 ## License
 This package is free and open source software, licensed under GPL
-(&gt;=3). See the [LICENSE]https://github.com/YunheLiuMCMC/ClinSimon/blob/main/LICENSE.md) 
+(&gt;=3). See the [LICENSE](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/LICENSE.md) 
 file for more details.
 
