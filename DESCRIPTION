@@ -27,7 +27,8 @@ Depends: R (>= 3.5.0)
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    clinfun
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: no
