@@ -85,7 +85,7 @@ design's 0.521.
 
 
 ## Vignette
-For a detailed overview and examples, check out the [ClinSimon vignette](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/vignettes/ClinSimon.pdf).
+For a detailed overview and examples, check out the [ClinSimon vignette](https://github.com/YunheLiuMCMC/ClinSimon/blob/main/vignettes/ClinSimon.Rmd).
 
 ## License
 This package is free and open source software, licensed under GPL
