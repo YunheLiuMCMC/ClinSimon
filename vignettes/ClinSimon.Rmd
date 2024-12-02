@@ -59,6 +59,9 @@ functions within our package.
 To begin, install and load {ClinSimon} and {clinfun}:
 
 ```{r}
+if (!requireNamespace("clinfun", quietly = TRUE)) {
+  install.packages("clinfun")
+}
 library(clinfun)
 library(ClinSimon)
 ```
