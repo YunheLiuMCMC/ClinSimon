@@ -24,7 +24,7 @@ devtools::install_github("YunheLiuMCMC/ClinSimon")
 If you want to install the package with a vignette, you should install the `clinfun`
 package first. Then you can install it with the vignette built:
 ```r
-#Install the package clinfun first:
+# Install the package clinfun first:
 install.packages("clinfun")
 # Install ClinSimon with vignette support:
 devtools::install_github("YunheLiuMCMC/ClinSimon", build_vignettes = TRUE)
