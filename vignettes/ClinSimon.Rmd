@@ -2,9 +2,6 @@
 title: "ClinSimon"
 author: "Yunhe Liu"
 output:
-  pdf_document: 
-    toc: true
-    latex_engine: xelatex
   html_document:
     toc: true
     toc_depth: '3'
